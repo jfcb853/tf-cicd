@@ -9,7 +9,12 @@ $policyfile     =   './azure/azure-policies/policyfiles/block1433.json'
 
 try {
     
-   $null = New-AzPolicyDefinition -Name $policyname -Description $description -Policy $policyfile -Metadata '{"category":"Network"}' -WarningAction SilentlyContinue
+   $null = New-AzPolicyDefinition `
+                -Name $policyname `
+                -Description $description `
+                -Policy $policyfile `
+                -Metadata '{"category":"Network"}' `
+                -WarningAction SilentlyContinue
 
    Write-Host "Policy definition has been created" -ForegroundColor Green 
 
@@ -26,7 +31,12 @@ $policydef = Get-AzPolicyDefinition -Name $policyname
 
 try{
 
-    $null = New-AzPolicyAssignment -Name $policyname -Description $description -PolicyDefinition $policydef -Scope "/subscriptions/$($subscription.Id)" -WarningAction SilentlyContinue
+    $null = New-AzPolicyAssignment `
+                -Name $policyname `
+                -Description $description `
+                -PolicyDefinition $policydef `
+                -Scope "/subscriptions/$($subscription.Id)" `
+                -WarningAction SilentlyContinue
 
     Write-Host "Policy assignment has been created" -ForegroundColor Green 
 
